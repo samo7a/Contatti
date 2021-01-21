@@ -6,7 +6,7 @@
 	$dbPassword = "superPassword";
 	$dbName = "Contatti";
 
-	$conn = mysqli_connect($dbServerName, $dbUserName, $dbpassword, $dbName);
+	$conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
 	if($conn->connect_error){
 		returnError($conn->connect_error);
@@ -19,27 +19,28 @@
 		$phoneNumber = mysqli_real_escape_string($conn, $inputFromJson['phoneNumber']);
 		$email = mysqli_real_escape_string($conn, $inputFromJson['email']);
 
-		$sql = "INSERT INTO USERS (u_firstName, u_lastName, password, userName, u_phonerNumber, u_email) VALUES (?, ?, ?, ?, ?, ?);"
+		$sql = "INSERT INTO USERS (u_firstName, u_lastName, password, userName, u_phoneNumber, u_email) VALUES (?, ?, ?, ?, ?, ?);";
 		$stmt = mysqli_stmt_init($conn);
 
 		if(! mysqli_stmt_prepare($stmt, $sql)){
-			returnError("Connection Failed, please try again.");
+			returnError("<p>Signup Failed!</p><br>");
 		}
 		else {
 			mysqli_stmt_bind_param($stmt, "ssssss",$firstName, $lastName, $password, $userName, $phoneNumber, $email);
 			mysqli_stmt_execute($stmt);
+            returnInfo("<p>Signed Up!</p><br>");
+            mysqli_stmt_close($stmt);
+            mysqli_close($conn);
 		}
 	}
 	
 	
 	function returnError($err){
-		$retval = ""; 
-		outputJson($retval);
+		outputJson($err);
 	}
 	
 	function returnInfo($info){
-		$retval = "";
-		outputJson($retval);
+		outputJson($info);
 	}
 	
 	function outputJson ($file){
