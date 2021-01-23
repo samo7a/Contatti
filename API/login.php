@@ -23,7 +23,7 @@
     }
         
     //RECEIVING
-    $input = json_decode_(file_get_contents('php://input'),true);
+    $input = json_decode(file_get_contents('php://input'),true);
         
     //CONNECTING to SQL server
     $dbServerName = "localhost";
