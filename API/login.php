@@ -13,7 +13,6 @@
     //It will also send the user info to the landing page
     function returnUser($firstN, $lastN, $id){
         $ret = '{firstName: "'.$firstN.',lastName:"'.$lastN.',id:"'.$id.'",}';
-        header("LANDING PAGE HTTP",true);
         toJSON($ret);
     }
 
