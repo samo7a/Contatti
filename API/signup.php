@@ -24,8 +24,9 @@
 		}
 		else {
 			mysqli_stmt_bind_param($stmt, "ssssss", $firstName, $lastName, $password, $userName, $phoneNumber, $email);
-			mysqli_stmt_execute($stmt);
-            returnInfo("done");
+            if(mysqli_stmt_execute($stmt)){
+                returnInfo("done");
+            }
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
 		}

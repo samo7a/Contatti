@@ -10,7 +10,8 @@ var userName = "";
 var phoneNumber = "";
 var email = "";
 
-function signup() {
+function signup()
+{
     "use strict";
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
@@ -26,86 +27,103 @@ function signup() {
     document.getElementById("userNameError").innerHTML = "";
     document.getElementById("phoneNumberError").innerHTML = "";
     document.getElementById("emailError").innerHTML = "";
+    document.getElementById("error").innerHTML = "";
     
-    if (validateInput(firstName, lastName, password, userName, phoneNumber, email)) {
-        
-        var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "password" : "' + password + '", "userName" : "' + userName + '", "phoneNumber" : "' + phoneNumber + '", "email" : "' + email + '"}';
+    if (validateInput(firstName, lastName, password, confirmPassword, userName, phoneNumber, email))
+    {
+        var hashedPassword = md5(password);
+        var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "password" : "' + hashedPassword + '", "userName" : "' + userName + '", "phoneNumber" : "' + phoneNumber + '", "email" : "' + email + '"}';
         console.log(jsonPayload);
 	    var request = new XMLHttpRequest();
-	    request.open("POST", url, true);
+	    request.open("POST", url, false);
 	    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	    try {
             request.send(jsonPayload);
             var jsonObject = JSON.parse(request.responseText);
-            console.log(jsonObject.msg);
+            //console.log(jsonObject.msg);
             var endpointmsg = jsonObject.msg;
             var errormsg = endpointmsg.split('Users.').pop();
-            if(errormsg === "phoneNumber"){
+            if(errormsg === "u_phoneNumber'")
+            {
                 document.getElementById("error").innerHTML = "This phone number is registered. Sign in instead!";
                 document.getElementById("error").style.color = "red";
             }
-            if(errormsg === "u_email"){
-                document.getElementById("error").innerHTML = "This email has been used. Sign in instead!";
+            if(errormsg === "u_email'")
+            {
+                document.getElementById("error").innerHTML += "This email has been used. Sign in instead!";
                 document.getElementById("error").style.color = "red";
             }
-            if(errormsg === "userName"){
-                document.getElementById("error").innerHTML = "This user name is taken. Try again!";
+            if(errormsg === "userName'")
+            {
+                document.getElementById("error").innerHTML += "This user name is taken. Try again!";
                 document.getElementById("error").style.color = "red";
             }
-            else {
+            if (errormsg === "done")
+            {
                 document.getElementById("error").innerHTML = "Signed UP!";
                 document.getElementById("error").style.color = "green";
-                window.location.href = "index.html"; 
+                //window.location.href = "index.html"; 
             }
-            
-       }
-        catch(error) {
+        }
+        catch(error)
+        {
             document.getElementById("error").innerHTML = error.message;
             document.getElementById("error").style.color = "red";
         }
     }
-    else {
+    else
+    {
         document.getElementById("firstName").value = firstName;
         document.getElementById("lastName").value = lastName;
         document.getElementById("password").value = password;
         document.getElementById("userName").value = userName;
-        if (email == null) {
+        if (email == null)
+        {
             document.getElementById("email").value = "";
         }
-        else{
+        else
+        {
             document.getElementById("email").value = email;
         }
-        if (phoneNumber == null) {
+        if (phoneNumber == null)
+        {
             document.getElementById("phoneNumber").value = "";
         }
-        else{
+        else
+        {
             document.getElementById("phoneNumber").value = phoneNumber;
         }
-        
+        document.getElementById("error").innerHTML = "";
     }
 }
 
-function checkFirstName(name) {
+function checkFirstName(name)
+{
     "use strict";
     var nameREGEX = /^[A-Za-z-,\s']+$/;
-    if (name.length < 1) {
+    if (name.length < 1)
+    {
         document.getElementById("firstNameError").innerHTML = "First name is required!";
         document.getElementById("firstNameError").style.color = "red";
         return false;       
     }
-    if (!nameREGEX.test(name)) {
+    if (!nameREGEX.test(name))
+    {
         document.getElementById("firstNameError").innerHTML = "Please enter a valid name!";
         document.getElementById("firstNameError").style.color = "red";
         return false; 
     }
-    if (name.length > 50) {
+    if (name.length > 50)
+    {
         document.getElementById("firstNameError").innerHTML = "First Name should not exceed 50 characters!";
         document.getElementById("firstNameError").style.color = "red";
         return false;       
     }
     return true;
 }
-function checkLastName(name) {
+
+function checkLastName(name)
+{
     "use strict";
     var nameREGEX = /^[A-Za-z-,\s']+$/;
     if (name.length < 1) {
@@ -125,7 +143,9 @@ function checkLastName(name) {
     }
     return true;
 }
-function checkPassword(password) {
+
+function checkPassword(password)
+{
     "use strict";
     var passwordREGEX = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
         if (password.length === 0) {
@@ -133,55 +153,70 @@ function checkPassword(password) {
         document.getElementById("passwordError").style.color = "red";
         return false;
     }
-    if (!passwordREGEX.test(password)) {
+    if (!passwordREGEX.test(password))
+    {
         document.getElementById("passwordError").innerHTML = "Your password must be at least 8 characters long, contain at least<br>one number and have a mixture of uppercase and lowercase letters.";
         document.getElementById("passwordError").style.color = "red";
         return false;
     }
-    if (password.length > 50) {
+    if (password.length > 50)
+    {
         document.getElementById("passwordError").innerHTML = "Password should not exceed 50 characters!";
         document.getElementById("passwordError").style.color = "red";
         return false;
     }
     return true;
 }
-function checkConfirmPassword(confirmPassword, password) {
-    if (confirmPassword !== password) {
+
+function checkConfirmPassword(confirmPassword, password)
+{
+    if (confirmPassword !== password)
+    {
         document.getElementById("confirmPasswordError").innerHTML = "The two passwords are not matched!";
         document.getElementById("confirmPasswordError").style.color = "red";
         return false;
     }
     return true;
 }
-function checkUserName(userName) {
+
+function checkUserName(userName)
+{
     "use strict";
     var userNameREGEX = /^[A-z]{1,}[A-z0-9]{0,}$/;
-    if (!userNameREGEX.test(userName)) {
+    if (!userNameREGEX.test(userName))
+    {
         document.getElementById("userNameError").innerHTML = "Please enter a valid User Name!<br>User Name should start with a letter!";
         document.getElementById("userNameError").style.color = "red";
         return false;        
     }
-    if (userName.length < 5 || userName.length > 50) {
+    if (userName.length < 5 || userName.length > 50)
+    {
         document.getElementById("userNameError").innerHTML = "Please enter a valid User Name!<br>User Name length must be between 5 and 50 Characters!";
         document.getElementById("userNameError").style.color = "red";
         return false;       
     }
     return true;
 }
-function checkPhoneNumber(phoneNumber) {
+
+function checkPhoneNumber(phoneNumber)
+{
     "use strict";
-    if (phoneNumber.length === 0) {
+    if (phoneNumber.length === 0) 
+    {
         phoneNumber = null;
         return true;
     }
-    if (phoneNumber.length !== 10) {
+    if (phoneNumber.length !== 10)
+    {
         document.getElementById("phoneNumberError").innerHTML = "Please enter a valid phone number!";
         document.getElementById("phoneNumberError").style.color = "red";
         return false;
     }
     var i = 0;
-    for (i = 0; i < 10; i += 1) {
-        if (phoneNumber.charAt(i) < '0' && phoneNumber.charAt(i) > '9') {
+    for (i = 0; i < 10; i += 1)
+    {
+        if (phoneNumber.charAt(i) < '0' && phoneNumber.charAt(i) > '9')
+        {
             document.getElementById("phoneNumberError").innerHTML = "Please enter a valid phone number!";
             document.getElementById("phoneNumberError").style.color = "red";
             return false;
@@ -190,19 +225,23 @@ function checkPhoneNumber(phoneNumber) {
     return true;
 }
     
-function checkEmail(email) {
+function checkEmail(email)
+{
     "use strict";
     var emailREGEX = /^[^\s@]+@[^\s@\d]+\.[^\s@\d]+$/;
-    if (email.length > 50) {
+    if (email.length > 50)
+    {
         document.getElementById("emailError").innerHTML = "Email is too long!<br>Email should not exceed 50 characters!";
         document.getElementById("emailError").style.color = "red";
         return false;
     }
-    if (email.length === 0) {
+    if (email.length === 0)
+    {
         email = null;
         return true;
     }
-    if (!emailREGEX.test(email)) {
+    if (!emailREGEX.test(email))
+    {
         document.getElementById("emailError").innerHTML = "Please enter your email address in format:<br>yourname@example.com";
         document.getElementById("emailError").style.color = "red";
         return false;
@@ -210,7 +249,8 @@ function checkEmail(email) {
     return true;
 }
 
-function validateInput(firstName, lastName, password, confirmPassword, userName, phoneNumber, email) {
+function validateInput(firstName, lastName, password, confirmPassword, userName, phoneNumber, email)
+{
     "use strict";
     if (!checkFirstName(firstName)) return false;
     if (!checkLastName(lastName)) return false;
