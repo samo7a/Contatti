@@ -22,6 +22,7 @@ function signup() {
     document.getElementById("firstNameError").innerHTML = "";
     document.getElementById("lastNameError").innerHTML = "";
     document.getElementById("passwordError").innerHTML = "";
+    document.getElementById("confirmPasswordError").innerHTML = "";
     document.getElementById("userNameError").innerHTML = "";
     document.getElementById("phoneNumberError").innerHTML = "";
     document.getElementById("emailError").innerHTML = "";
@@ -37,11 +38,30 @@ function signup() {
             request.send(jsonPayload);
             var jsonObject = JSON.parse(request.responseText);
             console.log(jsonObject.msg);
-            console.log(jsonObject.error);
-            window.location.href = "index.html";
+            var endpointmsg = jsonObject.msg;
+            var errormsg = endpointmsg.split('Users.').pop();
+            if(errormsg === "phoneNumber"){
+                document.getElementById("error").innerHTML = "This phone number is registered. Sign in instead!";
+                document.getElementById("error").style.color = "red";
+            }
+            if(errormsg === "u_email"){
+                document.getElementById("error").innerHTML = "This email has been used. Sign in instead!";
+                document.getElementById("error").style.color = "red";
+            }
+            if(errormsg === "userName"){
+                document.getElementById("error").innerHTML = "This user name is taken. Try again!";
+                document.getElementById("error").style.color = "red";
+            }
+            else {
+                document.getElementById("error").innerHTML = "Signed UP!";
+                document.getElementById("error").style.color = "green";
+                window.location.href = "index.html"; 
+            }
+            
        }
-        catch(err) {
-            document.getElementById("error").innerHTML = err.message;
+        catch(error) {
+            document.getElementById("error").innerHTML = error.message;
+            document.getElementById("error").style.color = "red";
         }
     }
     else {
