@@ -23,21 +23,21 @@
 			returnError($stmt->error); ;
 		}
 		else {
-			mysqli_stmt_bind_param($stmt, "ssssss",$firstName, $lastName, $password, $userName, $phoneNumber, $email);
+			mysqli_stmt_bind_param($stmt, "ssssss", $firstName, $lastName, $password, $userName, $phoneNumber, $email);
 			mysqli_stmt_execute($stmt);
-            returnInfo("<p>Signed Up!</p><br>");
+            returnInfo("done");
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
 		}
 	}
     
-	function returnError($err){
-        $retval = '{"msg":"<p>Sign up Failed!</p><br>" , "error":"' . $err . '"}';
+	function returnError($error){
+        $retval = '{"msg":"' .$error.'"}';
 		outputJson($retval);
 	}
 	
 	function returnInfo($info){
-        $retval = '{"msg":"<p>Signed Up!</p><br>" , "error":"' . $err . '"}';
+        $retval = '{"msg":"' .$info.'"}';
 		outputJson($retval);
 	}
 	

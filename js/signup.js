@@ -5,6 +5,7 @@ var url = 'http://thecontatti.com/API/signup.php';
 var firstName = "";
 var lastName = "";
 var password = "";
+var confirmPassword = "";
 var userName = "";
 var phoneNumber = "";
 var email = "";
@@ -14,6 +15,7 @@ function signup() {
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
     password = document.getElementById("password").value;
+    confirmPassword = document.getElementById("confirmPassword").value;
     userName = document.getElementById("userName").value;
     phoneNumber = document.getElementById("phoneNumber").value;
     email = document.getElementById("email").value;
@@ -87,7 +89,7 @@ function checkLastName(name) {
     "use strict";
     var nameREGEX = /^[A-Za-z-,\s']+$/;
     if (name.length < 1) {
-        document.getElementById("lastNameError").innerHTML = "*Last name is required!";
+        document.getElementById("lastNameError").innerHTML = "Last name is required!";
         document.getElementById("lastNameError").style.color = "red";
         return false;       
     }
@@ -123,6 +125,14 @@ function checkPassword(password) {
     }
     return true;
 }
+function checkConfirmPassword(confirmPassword, password) {
+    if (confirmPassword !== password) {
+        document.getElementById("confirmPasswordError").innerHTML = "The two passwords are not matched!";
+        document.getElementById("confirmPasswordError").style.color = "red";
+        return false;
+    }
+    return true;
+}
 function checkUserName(userName) {
     "use strict";
     var userNameREGEX = /^[A-z]{1,}[A-z0-9]{0,}$/;
@@ -152,8 +162,8 @@ function checkPhoneNumber(phoneNumber) {
     var i = 0;
     for (i = 0; i < 10; i += 1) {
         if (phoneNumber.charAt(i) < '0' && phoneNumber.charAt(i) > '9') {
-            document.getElementById("phoneError").innerHTML = "Please enter a valid phone number!";
-            document.getElementById("phoneError").style.color = "red";
+            document.getElementById("phoneNumberError").innerHTML = "Please enter a valid phone number!";
+            document.getElementById("phoneNumberError").style.color = "red";
             return false;
         } 
     }
@@ -180,11 +190,12 @@ function checkEmail(email) {
     return true;
 }
 
-function validateInput(firstName, lastName, password, userName, phoneNumber, email) {
+function validateInput(firstName, lastName, password, confirmPassword, userName, phoneNumber, email) {
     "use strict";
     if (!checkFirstName(firstName)) return false;
     if (!checkLastName(lastName)) return false;
     if (!checkPassword(password)) return false;
+    if (!checkConfirmPassword(confirmPassword, password)) return false;
     if (!checkUserName(userName)) return false;
     if (!checkPhoneNumber(phoneNumber)) return false;
     if(!checkEmail(email)) return false;
