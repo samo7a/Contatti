@@ -1,4 +1,4 @@
-var url = 'http://thecontatti.com/signup.php';
+var url = 'http://thecontatti.com/API/signup.php';
 //var dublicateEmail = "Duplicate entry '88@ss.net' for key 'Users.u_email'";
 //var dublicateUserName = "Duplicate entry 'samo' for key 'Users.userName'";
 //var dublicatePhoneNumber = "Dublicat entry '12345667' for key 'Users.phoneNumber'";
@@ -25,9 +25,22 @@ function signup() {
     document.getElementById("emailError").innerHTML = "";
     
     if (validateInput(firstName, lastName, password, userName, phoneNumber, email)) {
+        
         var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "password" : "' + password + '", "userName" : "' + userName + '", "phoneNumber" : "' + phoneNumber + '", "email" : "' + email + '"}';
-        //TODO: send the json file to the php end point
-        console.log(JSON.parse(jsonPayload));
+        console.log(jsonPayload);
+	    var request = new XMLHttpRequest();
+	    request.open("POST", url, true);
+	    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	    try {
+            request.send(jsonPayload);
+            var jsonObject = JSON.parse(request.responseText);
+            console.log(jsonObject.msg);
+            console.log(jsonObject.error);
+            window.location.href = "index.html";
+       }
+        catch(err) {
+            document.getElementById("error").innerHTML = err.message;
+        }
     }
     else {
         document.getElementById("firstName").value = firstName;
