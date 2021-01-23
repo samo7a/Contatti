@@ -9,6 +9,7 @@ var confirmPassword = "";
 var userName = "";
 var phoneNumber = "";
 var email = "";
+// var nothing = nothing:
 
 function signup()
 {
