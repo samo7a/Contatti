@@ -11,8 +11,8 @@
 
     //This takes the user to the landing page 
     //It will also send the user info to the landing page
-    function returnUser($firstN, $lastN, $id){
-        $ret = '{firstName: "'.$firstN.',lastName:"'.$lastN.',id:"'.$id.'",}';
+    function returnUser($firstName, $lastName, $id){
+        $ret = '{firstName: "'.$firstName.',lastName:"'.$lastName.',id:"'.$id.'",}';
         toJSON($ret);
     }
 
@@ -28,7 +28,7 @@
     //CONNECTING to SQL server
     $dbServerName = "localhost";
     $dbUserName = "superUser";
-    $dbPassWord = "superPassword";
+    $dbPassword = "superPassword";
     $dbName = "Contatti";
 
     $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
@@ -46,7 +46,7 @@
             $query = "SELECT u_id,u_firstName,u_lastName FROM Users where Login = '" . $login . "' and Password = '" . $password . "';";
             $result = mysqli_query($conn, $query);
             //Review SQL Result
-            $numRows = mysqli_num_row($result);
+            $numRows = mysqli_num_rows($result);
             if($numRows>0){
                 //User found
                 $user = $result->fetch_assoc();
