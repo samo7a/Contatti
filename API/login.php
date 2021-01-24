@@ -17,9 +17,9 @@
     }
 
     //This return JSON files to JS
-    function toJSON($obj){
+    function toJSON($json){
         header('Content-type: application/json');
-		echo $obj;
+		echo $json;
     }
         
     //RECEIVING
