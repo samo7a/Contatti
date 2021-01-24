@@ -31,12 +31,12 @@
     $dbPassword = "superPassword";
     $dbName = "Contatti";
 
-    $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
+    $conn = mysqli_connect("localhost", "superUser", "superPassword", "Contatti");
     
     //Start Reading Sequence
-        if ($conn->connect_error)
+        if ($conn->connect_error())
         {
-            error( $conn->connect_error );
+            error( $conn->connect_error());
         }
         else{
             //Getting login and password from json
@@ -44,7 +44,6 @@
             $password = $input["password"];
             //query to DB
     //$query = "SELECT u_id,u_firstName,u_lastName FROM Users where userName = '" . $login . "' and password = '" . $password . "';";
-
             $query = "SELECT u_id, u_firstName, u_lastName FROM Users WHERE userName = '".$login."' and password = '".$password."';";
             $result = mysqli_query($conn, $query);
             //Review SQL Result
