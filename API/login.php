@@ -43,7 +43,7 @@
             $login = $input["login"];
             $password = $input["password"];
             //query to DB
-            $query = "SELECT ID,firstName,lastName FROM Users where Login = '" . $login . "' and Password = '" . $password . "'";
+            $query = "SELECT u_id,u_firstName,u_lastName FROM Users where Login = '" . $login . "' and Password = '" . $password . "';";
             $result = mysqli_query($conn, $query);
             //Review SQL Result
             $numRows = mysqli_num_row($result);
