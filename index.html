@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title COP 4331 LAMP Stack Demo></title>
+        <link href="./css/main.css" rel ="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <section class = "container-fluid main">
+            <div class = "row">
+                <div class="col-md-3 login">
+                    <img src="./images/icon2.png"/>
+                    <h3>Login</h3>
+                    <span id="inner-title">Enter Username</span>
+                    <input type="email" class="form-control" id ="loginName" placeholder="Username"/><br />
+                    <span id="inner-title">Enter Password</span>
+                    <input type="password" class="form-control"  id ="loginPassword" placeholder="Password"/><br />
+                    <button type="button" id="loginButton" class ="btn btn-primary btn-block mt-2 mb-3" onclick="doLogin();">Submit</button>
+                    <span id="loginResult"></span>    
+                </div>
+                <div class="col-md-9 signUp">
+                    <h3 class="header">Sign-Up</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <span id="inner-title">Enter First Name</span>
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name"/><br />
+                            <span id="inner-title">Enter Last Name</span>
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name"/><br />
+                            <span id="inner-title">Enter Password</span>
+                            <input type="password" class="form-control" id="password" placeholder="Password"/><br />
+                            <span id="inner-title">Enter Confirm Password</span>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password "/><br />
+                        </div>
+                        <div class="col-md-6">
+                           
+                            <span id="inner-title">Enter User Name</span>
+                            <input type="password" class="form-control" id="userName" placeholder="Username "/><br />
+                            <span id="inner-title">Enter Email</span>
+                            <input type="email" class="form-control" id="email" placeholder="Email"/><br />
+                            <span id="inner-title">Enter Phone</span>
+                            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone"/><br />
+
+                        </div>        
+                            <button type="button" id="singButton" class ="btn btn-primary btn-block mt-2 mb-3" onclick="doSign();">Submit</button>    
+                    </div>                        
+                </div>
+        </section>
+    </body>
+</html>
