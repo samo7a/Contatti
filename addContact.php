@@ -1,4 +1,6 @@
 <?php
+	//"error": "Field 'u_id' doesn't have a default value"
+
 	$inData = getRequestInfo();
 	
 	$firstName = mysqli_real_escape_string($conn, $inData["firstName"]);
