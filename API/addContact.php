@@ -3,11 +3,11 @@
 	
 	$conn = new mysqli("localhost", "superUser", "superPassword", "Contatti");
 	
-	$u_id = mysqli_real_escape_string($conn, $inData["u_id"]);
-	$firstName = mysqli_real_escape_string($conn, $inData["firstName"]);
-	$lastName = mysqli_real_escape_string($conn, $inData["lastName"]);
-	$phoneNumber = mysqli_real_escape_string($conn, $inData["phoneNumber"]);
-	$email = mysqli_real_escape_string($conn, $inData["email"]);
+	$u_id = $inData["u_id"];
+	$firstName = mysqli_real_escape_string($conn, $inData["c_firstName"]);
+	$lastName = mysqli_real_escape_string($conn, $inData["c_lastName"]);
+	$phoneNumber = mysqli_real_escape_string($conn, $inData["c_phoneNumber"]);
+	$email = mysqli_real_escape_string($conn, $inData["c_email"]);
 	$address = mysqli_real_escape_string($conn, $inData["address"]);
 	$city = mysqli_real_escape_string($conn, $inData["city"]);
 	$state = mysqli_real_escape_string($conn, $inData["state"]);
@@ -19,7 +19,7 @@
 	} 
 	else
 	{	
-		$sql = "INSERT INTO Contacts(u_id, c_firstName, c_lastName, c_phoneNumber, c_email, address, city, state, zip) VALUES ('.$u_id.', '".$firstName."', '".$lastName."', '".$phoneNumber."', '".$email."', '".$address."', '".$city."', '".$state."', '".$zip."')";
+		$sql = "INSERT INTO Contacts(u_id, c_firstName, c_lastName, c_phoneNumber, c_email, address, city, state, zip) VALUES (".$u_id.", '".$firstName."', '".$lastName."', '".$phoneNumber."', '".$email."', '".$address."', '".$city."', '".$state."', '".$zip."')";
 		
 		if($conn->query($sql) != TRUE )
 		{

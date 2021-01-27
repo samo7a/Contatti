@@ -1,7 +1,4 @@
 var url = 'http://thecontatti.com/API/signup.php';
-//var dublicateEmail = "Duplicate entry '88@ss.net' for key 'Users.u_email'";
-//var dublicateUserName = "Duplicate entry 'samo' for key 'Users.userName'";
-//var dublicatePhoneNumber = "Dublicat entry '12345667' for key 'Users.phoneNumber'";
 var firstName = "";
 var lastName = "";
 var password = "";
@@ -9,7 +6,7 @@ var confirmPassword = "";
 var userName = "";
 var phoneNumber = "";
 var email = "";
-// var nothing = nothing:
+
 
 function signup()
 {
@@ -34,37 +31,52 @@ function signup()
     {
         var hashedPassword = md5(password);
         var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "password" : "' + hashedPassword + '", "userName" : "' + userName + '", "phoneNumber" : "' + phoneNumber + '", "email" : "' + email + '"}';
-        console.log(jsonPayload);
+        //console.log(jsonPayload);
+
+        
 	    var request = new XMLHttpRequest();
-	    request.open("POST", url, false);
+	    request.open("POST", url, true);
 	    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	    try {
-            request.send(jsonPayload);
-            var jsonObject = JSON.parse(request.responseText);
-            //console.log(jsonObject.msg);
-            var endpointmsg = jsonObject.msg;
-            var errormsg = endpointmsg.split('Users.').pop();
-            if(errormsg === "u_phoneNumber'")
-            {
-                document.getElementById("error").innerHTML = "This phone number is registered. Sign in instead!";
-                document.getElementById("error").style.color = "red";
-            }
-            if(errormsg === "u_email'")
-            {
-                document.getElementById("error").innerHTML += "This email has been used. Sign in instead!";
-                document.getElementById("error").style.color = "red";
-            }
+            request.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{    //console.log(request.responseText);
+				var jsonObject = JSON.parse(request.responseText);
+                //console.log(jsonObject.msg);
+                var endpointmsg = jsonObject['msg'];  
+                var errormsg = endpointmsg.split('Users.').pop();
+                
+                if(errormsg === "u_phoneNumber'")
+                {
+                    document.getElementById("error").innerHTML = "This phone number is registered. Sign in instead!";
+                    document.getElementById("error").style.color = "red";
+                }
+                if(errormsg === "u_email'")
+                {
+                    document.getElementById("error").innerHTML += "This email has been used. Sign in instead!";
+                    document.getElementById("error").style.color = "red";
+                }
             if(errormsg === "userName'")
-            {
-                document.getElementById("error").innerHTML += "This user name is taken. Try again!";
-                document.getElementById("error").style.color = "red";
-            }
+                {
+                    document.getElementById("error").innerHTML += "This user name is taken. Try again!";
+                    document.getElementById("error").style.color = "red";
+                }
+                
             if (errormsg === "done")
-            {
-                document.getElementById("error").innerHTML = "Signed UP!";
-                document.getElementById("error").style.color = "green";
+                {
+                    document.getElementById("error").innerHTML = "Signed UP!";
+                    document.getElementById("error").style.color = "green";
                 //window.location.href = "index.html"; 
-            }
+                }
+		          
+
+			}
+		};
+            request.responseType="text";
+            request.send(jsonPayload);
+            
+            
         }
         catch(error)
         {
@@ -216,7 +228,7 @@ function checkPhoneNumber(phoneNumber)
     var i = 0;
     for (i = 0; i < 10; i += 1)
     {
-        if (phoneNumber.charAt(i) < '0' && phoneNumber.charAt(i) > '9')
+        if (phoneNumber.charAt(i) < '0' || phoneNumber.charAt(i) > '9')
         {
             document.getElementById("phoneNumberError").innerHTML = "Please enter a valid phone number!";
             document.getElementById("phoneNumberError").style.color = "red";
