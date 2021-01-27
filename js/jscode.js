@@ -3,6 +3,7 @@ var extension = 'php';
 
 function addContact()
 {
+	var inputUser = document.getElementById("u_id").value;
 	var addFirst = document.getElementById("firstName").value;
 	var addLast = document.getElementById("lastName").value;
 	var addPhone = document.getElementById("phoneNumber").value;
@@ -11,9 +12,9 @@ function addContact()
 	var addCity = document.getElementById("city").value;
 	var addState = document.getElementById("state").value;
 	var addZip = document.getElementById("zip").value;
-	//document.getElementById("contactAdd").innerHTML = "";
+	document.getElementById("contactAdd").innerHTML = "";
 	
-	var jsonPayload = '{"firstName" : "' + addFirst + '", "lastName" : "' + addLast + '", "phoneNumber" : "' + addPhone + '", "email" : "' + addEmail + '", "address" : "' + addAddress + '", "city" : "' + addCity + '", "state" : "' + addState + '", "zip" : "' + addZip + '"}';
+	var jsonPayload = '{"u_id" : "' + inputUser + '", "firstName" : "' + addFirst + '", "lastName" : "' + addLast + '", "phoneNumber" : "' + addPhone + '", "email" : "' + addEmail + '", "address" : "' + addAddress + '", "city" : "' + addCity + '", "state" : "' + addState + '", "zip" : "' + addZip + '"}';
 	var url = urlBase + '/addContact.' + extension;
 	
 	var xhr = new XMLHttpRequest();
