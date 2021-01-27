@@ -18,6 +18,8 @@ function signup()
     userName = document.getElementById("userName").value;
     phoneNumber = document.getElementById("phoneNumber").value;
     email = document.getElementById("email").value;
+    document.getElementById("loginName").innerHTML = "";
+    document.getElementById("loginPassword").innerHTML = "";    
     document.getElementById("firstNameError").innerHTML = "";
     document.getElementById("lastNameError").innerHTML = "";
     document.getElementById("passwordError").innerHTML = "";
@@ -67,7 +69,19 @@ function signup()
                 {
                     document.getElementById("error").innerHTML = "Signed UP!";
                     document.getElementById("error").style.color = "green";
-                //window.location.href = "index.html"; 
+                    document.getElementById("loginName").value = userName;
+                    document.getElementById("loginPassword").value = password;
+    
+                    document.getElementById("firstName").value = "";
+                    document.getElementById("lastName").value = "";
+                    document.getElementById("password").value = "";
+                    document.getElementById("confirmPassword").value = "";
+                    document.getElementById("userName").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("phoneNumber").value = "";
+
+                    
+                    
                 }
 		          
 
@@ -160,7 +174,7 @@ function checkLastName(name)
 function checkPassword(password)
 {
     "use strict";
-    var passwordREGEX = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    var passwordREGEX = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,50}$/;
         if (password.length === 0) {
         document.getElementById("passwordError").innerHTML = "Password is required!";
         document.getElementById("passwordError").style.color = "red";
@@ -168,16 +182,11 @@ function checkPassword(password)
     }
     if (!passwordREGEX.test(password))
     {
-        document.getElementById("passwordError").innerHTML = "Your password must be at least 8 characters long, contain at least<br>one number and have a mixture of uppercase and lowercase letters.";
+        document.getElementById("passwordError").innerHTML = "Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters.<br>Password should not exceed 50 characters!"; 
         document.getElementById("passwordError").style.color = "red";
         return false;
     }
-    if (password.length > 50)
-    {
-        document.getElementById("passwordError").innerHTML = "Password should not exceed 50 characters!";
-        document.getElementById("passwordError").style.color = "red";
-        return false;
-    }
+
     return true;
 }
 
@@ -195,19 +204,14 @@ function checkConfirmPassword(confirmPassword, password)
 function checkUserName(userName)
 {
     "use strict";
-    var userNameREGEX = /^[A-z]{1,}[A-z0-9]{0,}$/;
+    var userNameREGEX = /^[A-z]{1,}[A-z0-9]{5,50}$/;
     if (!userNameREGEX.test(userName))
     {
-        document.getElementById("userNameError").innerHTML = "Please enter a valid User Name!<br>User Name should start with a letter!";
+        document.getElementById("userNameError").innerHTML = "Please enter a valid User Name!<br>User Name should start with a letter, cannot contain any special characters and must be between 5 to 50 Characters long!";
         document.getElementById("userNameError").style.color = "red";
         return false;        
     }
-    if (userName.length < 5 || userName.length > 50)
-    {
-        document.getElementById("userNameError").innerHTML = "Please enter a valid User Name!<br>User Name length must be between 5 and 50 Characters!";
-        document.getElementById("userNameError").style.color = "red";
-        return false;       
-    }
+
     return true;
 }
 
@@ -216,7 +220,6 @@ function checkPhoneNumber(phoneNumber)
     "use strict";
     if (phoneNumber.length === 0) 
     {
-        phoneNumber = null;
         return true;
     }
     if (phoneNumber.length !== 10)
@@ -250,7 +253,6 @@ function checkEmail(email)
     }
     if (email.length === 0)
     {
-        email = null;
         return true;
     }
     if (!emailREGEX.test(email))
