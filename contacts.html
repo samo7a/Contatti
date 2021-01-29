@@ -11,20 +11,9 @@
 <body>
   <section class="container-fluid contactsBg">
     <!-- Nav Bar  -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" <a class="navbar-brand">Phone Book</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id = "navigation" <a class="navbar-brand">Contati </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Sort Contacts</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Other</a>
-            </div>
-          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -107,85 +96,27 @@
     </div>
 
     <!-- Contacts -->
-    <div class="container- max-width " style="height: 80%">
-      <div class="card bg-dark mt-5">
-        <h3 class="card-header bg-light ">Contacts</h3>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-12 text-right">
-              <button class="btn btn-light badge-pill" data-toggle="modal" data-target="#addContact"
-                style="height: 40px;">Add Contact</button>
-            </div>
-          </div>
-
-          <table class="table table-dark table-hover table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Phone No </th>
-                <th scope="col">Email</th>
-                <th scope="col">Address </th>
-                <th class="text-right">Actions </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>1</th>
-                <td>Carlos</td>
-                <td>Rodriguez</td>
-                <td>407-242-1794</td>
-                <td>Crodriguez2409@knights.ucf.edu</td>
-                <td>4000 Central Florida Blvd, Orlando, FL 32816 </td>
-                <td class="text-right">
-                  <button class="btn btn-light badge-pill" data-toggle="modal" data-target="#editContact"
-                    style="width: 80px;"> EDIT </button>
-                  <button class="btn btn-secondary badge-pill" style="width: 80px;"> DELETE </button>
-                </td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>Jenny</td>
-                <td>Soto</td>
-                <td>407-234-1819</td>
-                <td>Jenny.soto@knights.ucf.edu</td>
-                <td>402 Sunnyvile Dr , Deltona, FL 32816 </td>
-                <td class="text-right">
-                  <button class="btn btn-light badge-pill" style="width: 80px;"> EDIT </button>
-                  <button class="btn btn-secondary badge-pill" style="width: 80px;"> DELETE </button>
-                </td>
-              </tr>
-              <tr>
-                <th>3</th>
-                <td>Britney</td>
-                <td>Baron</td>
-                <td>407-234-2390</td>
-                <td>Britneybaron@knights.ucf.edu</td>
-                <td>44 Montgomery St , Winter Park, FL 32819 </td>
-                <td class="text-right">
-                  <button class="btn btn-light badge-pill" style="width: 80px;"> EDIT </button>
-                  <button class="btn btn-secondary badge-pill" style="width: 80px;"> DELETE </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
-      </div>
+    <div class="container- max-width " id = "contact" style="height: 80%">
+      <section class="container-fluid bg">
+        <button class="btn btn-light badge-pill" data-toggle="modal" data-target="#addContact" style="height: 40px;">Add
+          Contact</button>
+        <button class="btn btn-light badge-pill" data-toggle="modal" data-target="#editContact" style="width: 80px;">
+          EDIT </button>
+        <button class="btn btn-secondary badge-pill" style="width: 80px;"> DELETE </button>
+      </section>
     </div>
 
 
-  </section>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>
