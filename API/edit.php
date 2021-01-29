@@ -30,7 +30,7 @@ $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
        $state = $input["state"];
        $zip = $input["zip"];
 
-       $query = "UPDATE Contacts SET c_firstName='".$firstName."',c_lastname='".$lastName."',city='".$city."',state='".$state."',zip='".$zip."';";
+       $query = "UPDATE Contacts SET c_firstName='".$firstName."',c_lastname='".$lastName."',city='".$city."',state='".$state."',zip='".$zip."' WHERE c_id ='".$cID."' and u_id ='".$uID."';";
        
        $submit = mysqli_query($conn, $query);
   
@@ -82,26 +82,4 @@ $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
     }
   
 ?>
-  else{
-            //Getting login and password from json
-            $login = $input["login"];
-            $password = $input["password"];
-            //query to DB
-            $query = "SELECT u_id, u_firstName, u_lastName FROM Users WHERE userName = '".$login."' and password = '".$password."';";
-            $result = mysqli_query($conn, $query);
-            $numRows = mysqli_num_rows($result);
-            //Review SQL Result
-            if($numRows>0){
-                //User found
-                $user = $result->fetch_assoc();
-                $firstName = $user["u_firstName"];
-                $lastName = $user["u_lastName"];
-                $id = $user["u_id"];
-
-                returnUser($firstName,$lastName,$id);
-
-            }
-            //User not found
-            else{
-                error("User Not in Our Records");
-            }
+  
