@@ -1,7 +1,12 @@
-var url = 'http://thecontatti.com/API/signup.php';
+var url = 'http://thecontatti.com/API/search.php';
 
 function search()
-{
+{   
+    'use strict';
+    var table = document.getElementById("searchResults");
+    table.innerHTML = "";
+    var searchItem = document.getElementById("searchItem").value;
+    var jsonPayload = '{"u_id":1, "searchItem":"' + searchItem + '"}';
     var request = new XMLHttpRequest();
     request.open("POST", url, true);
     request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -10,10 +15,10 @@ function search()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{    
-                var jsonArray = JSON.parse(xhr.responseText);
-                var table = document.getElementById("searchResults");
+                var jsonArray = JSON.parse(request.responseText);
+                console.log(jsonArray);
                 for (var i = 0; i < jsonArray.length; i++){
-                    var row = "<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}</td></tr>";
+                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}</td></tr>`;
                     table.innerHTML += row;
                 }
 		          
@@ -31,7 +36,42 @@ function search()
             document.getElementById("error").style.color = "red";
         }
     }
+
+
+window.onload = function(){
+        'use strict';
+    var table = document.getElementById("searchResults");
+    table.innerHTML = "";
     
+    var jsonPayload = '{"u_id":1, "searchItem":""}';
+    var request = new XMLHttpRequest();
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	    try {
+            request.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{    
+                var jsonArray = JSON.parse(request.responseText);
+                console.log(jsonArray);
+                for (var i = 0; i < jsonArray.length; i++){
+                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}</td></tr>`;
+                    table.innerHTML += row;
+                }
+		          
+
+			}
+		};
+            request.responseType="text";
+            request.send(jsonPayload);
+            
+            
+        }
+        catch(error)
+        {
+            document.getElementById("error").innerHTML = error.message;
+            document.getElementById("error").style.color = "red";
+        }
 }
 
 
