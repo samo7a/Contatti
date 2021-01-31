@@ -3,6 +3,7 @@
 
 <head>
   <title COP 4331 LAMP Stack Demo></title>
+
      <script type="text/javascript" src="js/login.js"></script> 
   <script type="text/javascript" src="js/search.js"></script>
   <link href="css/contacts.css" rel="stylesheet">
@@ -13,11 +14,14 @@
 <body>
   <section class="container-fluid contactsBg">
     <!-- Nav Bar  -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" id = "navigation" <a class="navbar-brand">Contati </a>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id = "navigation" <a class="navbar-brand">Contati </a>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         </ul>
         <form class="form-inline my-2 my-lg-0">
+
           <input id="searchItem" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onkeyup="search();">
           <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" onclick="logout();">Logout</button>
         </form>
@@ -108,6 +112,7 @@
       </section>
     </div>
 
+
     <div> 
         <table>
             <tr id="parent"><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip Code</th><th>Options</th></tr>
@@ -116,6 +121,7 @@
         </table>
         <p id="error"></p>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
