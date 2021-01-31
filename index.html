@@ -1,45 +1,63 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Login Form</title>
-    <link rel="stylesheet" type="text/css" href="css/global.css">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-  <section class = "container-fluid bg">
-    <section class = "row justify-content-center">
-      <section class = "con-12 col-sm-6 col-md-3">
-        <form class="form-container">
-          <div class="form-group">
-            <h1>Log in</h1>
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">Enter email address.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block mt-2 mb-3">Submit</button>
-          <p>Don't have an account? <a href="#">Sign up here.</a></p>
-        </form>
-      </section>
-    </section>
-  </section>
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title COP 4331 LAMP Stack Demo></title>
+        <script type="text/javascript" src="js/md5.js"></script>
+        <script type="text/javascript" src="js/signup.js"></script>
+        <script type="text/javascript" src="js/login.js"></script>
+        <script type="text/javascript"> document.cookie = "u_id= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+        </script>
+        <link href="./css/main.css" rel ="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <section class = "container-fluid main">
+            <div class = "row">
+                <div class="col-md-3 login">
+                    <img src="./images/icon2.png"/>
+                    <h3>Login</h3>
+                    <span id="inner-title">Enter Username</span>
+                    <input type="email" class="form-control" id ="loginName" placeholder="Username"/><br />
+                    <span id="inner-title">Enter Password</span>
+                    <input type="password" class="form-control"  id ="loginPassword" placeholder="Password"/><br />
+                    <button type="button" id="loginButton" class ="btn btn-primary btn-block mt-2 mb-3" onclick="login();">Submit</button>
+                    <span id="loginResult"></span>    
+                </div>
+                <div class="col-md-9 signUp">
+                    <h3 class="header">Sign-Up</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <span id="inner-title">Enter First Name</span>
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name"/><br />
+                            <p id="firstNameError"></p>
+                            <span id="inner-title">Enter Last Name</span>
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name"/><br />
+                            <p id="lastNameError"></p>
+                            <span id="inner-title">Enter Password</span>
+                            <input type="password" class="form-control" id="password" placeholder="Password"/><br />
+                            <p id="passwordError"></p>
+                            <span id="inner-title">Enter Confirm Password</span>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password "/><br />
+                            <p id="confirmPasswordError"></p>
+                        </div>
+                        <div class="col-md-6">
+                           
+                            <span id="inner-title">Enter User Name</span>
+                            <input type="text" class="form-control" id="userName" placeholder="Username "/><br />
+                            <p id="userNameError"></p>
+                            <span id="inner-title">Enter Email</span>
+                            <input type="email" class="form-control" id="email" placeholder="Email (Optional)"/><br />
+                            <p id="emailError"></p>
+                            <span id="inner-title">Enter Phone</span>
+                            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number (Optional)"/><br />
+                            <p id="phoneNumberError"></p>
+
+                        </div>        
+                            <button type="button" id="singButton" class ="btn btn-primary btn-block mt-2 mb-3" onclick="signup();">Submit</button>
+                            <p id="error"></p>
+                    </div>                        
+                </div>
+        </section>
+    </body>
 </html>
