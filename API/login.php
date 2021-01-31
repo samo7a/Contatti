@@ -20,7 +20,7 @@
         }
         else{
             //Getting login and password from json
-            $login = $input["login"];
+            $login = $input["userName"];
             $password = $input["password"];
             //query to DB
             $query = "SELECT u_id, u_firstName, u_lastName FROM Users WHERE userName = '".$login."' and password = '".$password."';";
@@ -39,7 +39,7 @@
             }
             //User not found
             else{
-                error("User Not in Our Records");
+                error("User/Password combination incorrect");
             }
             $conn->close();
         }
@@ -52,14 +52,14 @@
     }
 
     function error($err){
-        $result = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+        $result = '{"u_id":0, "error":"' . $err . '"}';
         toJSON($result);
     }
 
     //This takes the user to the landing page 
     //It will also send the user info to the landing page
     function returnUser($firstName, $lastName, $id){
-        $ret = '{"firstName": "'.$firstName.'","lastName":"'.$lastName.'","id":"'.$id.'"}';
+        $ret = '{"u_firstName": "'.$firstName.'","u_lastName":"'.$lastName.'","u_id":"'.$id.'"}';
         toJSON($ret);
     }
 
