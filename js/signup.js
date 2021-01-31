@@ -32,7 +32,7 @@ function signup()
     if (validateInput(firstName, lastName, password, confirmPassword, userName, phoneNumber, email))
     {
         var hashedPassword = md5(password);
-        var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "password" : "' + hashedPassword + '", "userName" : "' + userName + '", "phoneNumber" : "' + phoneNumber + '", "email" : "' + email + '"}';
+        var json = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "password" : "' + hashedPassword + '", "userName" : "' + userName + '", "phoneNumber" : "' + phoneNumber + '", "email" : "' + email + '"}';
         //console.log(jsonPayload);
 
         
@@ -43,9 +43,9 @@ function signup()
             request.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
-			{    console.log(request.responseText);
+			{    //console.log(request.responseText);
 				var jsonObject = JSON.parse(request.responseText);
-                console.log(jsonObject.msg);
+                //console.log(jsonObject.msg);
                 var endpointmsg = jsonObject['msg'];  
                 var errormsg = endpointmsg.split('Users.').pop();
                 
@@ -88,7 +88,7 @@ function signup()
 			}
 		};
             request.responseType="text";
-            request.send(jsonPayload);
+            request.send(json);
             
             
         }
