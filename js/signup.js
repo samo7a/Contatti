@@ -1,4 +1,4 @@
-var url = 'http://thecontatti.com/API/signup.php';
+var signUpUrl = 'http://thecontatti.com/API/signup.php';
 var firstName = "";
 var lastName = "";
 var password = "";
@@ -33,19 +33,19 @@ function signup()
     {
         var hashedPassword = md5(password);
         var json = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "password" : "' + hashedPassword + '", "userName" : "' + userName + '", "phoneNumber" : "' + phoneNumber + '", "email" : "' + email + '"}';
-        //console.log(jsonPayload);
+        console.log(json);
 
         
 	    var request = new XMLHttpRequest();
-	    request.open("POST", url, true);
+	    request.open("POST", signUpUrl, true);
 	    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	    try {
             request.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
-			{    //console.log(request.responseText);
+			{    console.log(request.responseText);
 				var jsonObject = JSON.parse(request.responseText);
-                //console.log(jsonObject.msg);
+                console.log(jsonObject.msg);
                 var endpointmsg = jsonObject['msg'];  
                 var errormsg = endpointmsg.split('Users.').pop();
                 

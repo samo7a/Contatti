@@ -17,7 +17,7 @@ function search()
 			if (this.readyState == 4 && this.status == 200) 
 			{    
                 var jsonArray = JSON.parse(request.responseText);
-                console.log(jsonArray);
+                //console.log(jsonArray);
                 for (var i = 0; i < jsonArray.length; i++){
                     var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}</td><td><button onclick="editContact();">Edit</button><button "onclick="deleteContact();">Delete</button></td></tr>`;
                     table.innerHTML += row;
