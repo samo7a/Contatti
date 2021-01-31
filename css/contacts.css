@@ -13,8 +13,14 @@
     left: 0;
   }
 
-  #contact{
-    position: absolute;
-    margin-top: 60px;
-    left: 40px;
+  .contact{
+    position:absolute;
+    width:auto;
+    height:650px;
+    left:50%;
+    top:50%;
+    margin-left:-390px;
+    margin-top:-500px;
   }
+  
+
