@@ -43,9 +43,9 @@ function signup()
             request.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
-			{    //console.log(request.responseText);
+			{    console.log(request.responseText);
 				var jsonObject = JSON.parse(request.responseText);
-                //console.log(jsonObject.msg);
+                console.log(jsonObject.msg);
                 var endpointmsg = jsonObject['msg'];  
                 var errormsg = endpointmsg.split('Users.').pop();
                 
@@ -204,7 +204,7 @@ function checkConfirmPassword(confirmPassword, password)
 function checkUserName(userName)
 {
     "use strict";
-    var userNameREGEX = /^[A-z]{1,}[A-z0-9]{5,50}$/;
+    var userNameREGEX = /^[A-z]{1,}[A-z0-9]{4,50}$/;
     if (!userNameREGEX.test(userName))
     {
         document.getElementById("userNameError").innerHTML = "Please enter a valid User Name!<br>User Name should start with a letter, cannot contain any special characters and must be between 5 to 50 Characters long!";
