@@ -13,7 +13,7 @@
 	else
 	{	
 		
-		$sql = "DELETE FROM Contacts WHERE c_id = ? and u_id = ? LIMIT 1";
+		$sql = "DELETE FROM Contacts WHERE c_id = ? and u_id = ?";
 		if($conn->query($sql) != TRUE )
 		{
 			returnWithError( $conn->error );
