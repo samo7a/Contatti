@@ -1,4 +1,4 @@
-<?php//
+<?php
 	$inData = getRequestInfo();
 	
 	$conn = new mysqli("localhost", "superUser", "superPassword", "Contatti");
@@ -13,7 +13,8 @@
 	else
 	{	
 		
-		$sql = "DELETE FROM Contacts WHERE c_id = ? and u_id = ?";
+		$sql = "DELETE FROM Contacts WHERE c_id = $c_id and u_id = $u_id";
+		
 		if($conn->query($sql) != TRUE )
 		{
 			returnWithError( $conn->error );
