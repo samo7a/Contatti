@@ -4,9 +4,8 @@
 <head>
   <title> Contacts </title>
 
-  <script type="text/javascript" src="js/login.js"></script>
-  <script type="text/javascript" src="js/search.js"></script>
-  <script type="text/javascript" src="js/newContact.js"></script>
+  <script type="text/javascript" src="js/auth.js"></script>
+  <script type="text/javascript" src="js/crud.js"></script>
   <link href="css/contacts.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,10 +13,10 @@
 
 <body>
   <section class="container-fluid contactsBg">
-    <!-- Nav Bar  -->
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navigation" <a class="navbar-brand"> Contati </a>
-
+    <nav class="navbar navbar-expand-lg" id="navigation" style="background-color: #4067d3;">
+      <a class="navbar-brand">
+        <img src="./images/icon5.png" alt="Logo" style="width: 100px;">
+      </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         </ul>
@@ -25,7 +24,7 @@
 
           <input id="searchItem" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
             onkeyup="search();">
-          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" onclick="logout();">Logout</button>
+          <button class="btn btn-light btn-outline-dark my-2 my-sm-0" type="submit" onclick="logout();">Logout</button>
         </form>
       </div>
     </nav>
@@ -41,24 +40,24 @@
           <div class="modal-body">
             <form class="form-group">
               <label for="firstName">Enter First Name</label>
-              <input type="text" class="form-control" id="" placeholder="First Name">
+              <input type="text" class="form-control" id="newFirst" placeholder="First Name">
               <label for="LastName">Enter Last Name</label>
-              <input type="text" class="form-control" id="" placeholder="Last Name">
+              <input type="text" class="form-control" id="newLast" placeholder="Last Name">
               <label for="phoneNumber">Enter Phone Number</label>
-              <input type="text" class="form-control" id="" placeholder="Phone Number">
+              <input type="text" class="form-control" id="newPhone" placeholder="Phone Number">
               <label for="email">Enter Email</label>
-              <input type="text" class="form-control" id="" placeholder="Email">
+              <input type="text" class="form-control" id="newEmail" placeholder="Email">
               <label for="address">Enter Street</label>
-              <input type="text" class="form-control" id="street" placeholder="Address">
+              <input type="text" class="form-control" id="newStreet" placeholder="Address">
               <label for="address">Enter City</label>
-              <input type="text" class="form-control" id="city" placeholder="City">
+              <input type="text" class="form-control" id="newCity" placeholder="City">
               <label for="address">Enter State</label>
-              <input type="text" class="form-control" id="state" placeholder="State">
+              <input type="text" class="form-control" id="newState" placeholder="State">
               <label for="address">Enter Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder="Zip">
+              <input type="text" class="form-control" id="newZip" placeholder="Zip">
               <button type="button" class="btn btn-primary btn-block mt-2 mb-3" data-dismiss="modal">Close</button>
-              <button type="button" id="addButton" class="btn btn-primary btn-block mt-2 mb-3"
-                onclick="addContact();">Save changes</button>
+              <button type="button" id="addButton" class="btn btn-primary btn-block mt-2 mb-3" data-dismiss="modal"
+                onclick="newContact();">Add Contact</button>
             </form>
           </div>
         </div>
@@ -104,72 +103,29 @@
     </div>
 
     <!-- Contacts -->
-
-    
-    <div class="container-fluid" id="contact">
-      <table class="contact" width="auto" border="0" align="center" cellspacing="10px"  >
+    <h3>------</h3>
+    <div class="container-fluid" style="background-color: rgb(97, 131, 182)">
+      <table class="table mt-5"  style="width 50%">
         <thead>
-        <tr>
-          <th scope="col"> First Name</th>
-          <th scope="col">Last Name</th>
-          <td class="align-left">Phone Number</td>
-          <td class="align-left">Email</td>
-          <td class="align-middle">Address</td>
-          <td class="align-middle">City</td>
-          <td class="align-middle">State</td>
-          <td class="align-middle">Zip Code</td>
-          <td class="align-middle"><button class="btn btn-light badge-pill" data-toggle="modal" data-target="#addContact"
-              style="height: 40px;">Add Contact</button></th>
-          </td>
-        </tr>
-      </thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th class="align-left"><button class=" btn btn-light badge-pill" data-toggle="modal" data-target="#addContact"
+              style="height: 40px;">Add Contact </button></th>
+          </tr>
+        </thead>
         <tbody id="searchResults">
         </tbody>
       </table>
+
       <p id="error"></p>
     </div>
-
-
-
-
-    <!-- <div class="container- max-width " id="contact">
-    -->
-   <!-- <section class="container-fluid bg">
-
-
-        <div class="row justify-content-center " >
-          <table class="table table-responsive" >
-
-            <tbody>
-              <tr>
-                
-                <td class="align-middle">First Name</td>
-                <td class="align-middle">Last Name</td>
-                <td class="align-middle">Phone Number</td>
-                <td class="align-middle">Email</td>
-                <td class="align-middle">Address</td>
-                <td class="align-middle">City</td>
-                <td class="align-middle">State</td>
-                <td class="align-middle">Zip Code</td>
-                <td class="align-middle"><button class="btn btn-light badge-pill" data-toggle="modal"
-                    data-target="#addContact" style="height: 40px;">Add
-                    Contact</button></th>
-                </td>
-              </tr>
-            <tbody>
-            <tbody id="searchResults">
-            </tbody>
-          </table>
-          <p id="error"></p>
-          </thead>
-        </div>
-      </section>
-    <!--</div>-->
-    -->
-  
-    <!-- Table for Contacts  -->
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
