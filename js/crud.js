@@ -73,7 +73,6 @@ window.onload = function () {
 }
 
 function newContact() {
-    "use strict";
     let url = 'http://thecontatti.com/API/addContact.php';
 
     readCookie();
@@ -97,7 +96,7 @@ function newContact() {
         state: newState,
         zip: newZip,
     });
-
+    
     console.log(jsonPayload);
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -129,15 +128,20 @@ function newContact() {
                         };
                         request.responseType = "text";
                         request.send(json);
-                        document.getElementById("error").innerHTML = "Added Contact!";
-                        document.getElementById("error").style.color = "green";
                     }
+                    catch (error) {
+                        document.getElementById("error").innerHTML = error.message;
+                        document.getElementById("error").style.color = "red";
+                    }
+                    document.getElementById("error").innerHTML = "Added Contact!";
+                    document.getElementById("error").style.color = "green";
+                }
             };
-            }
-            xhr.send(jsonPayload);
         }
+        xhr.send(jsonPayload);
+    }
     catch (error) {
-            document.getElementById("error").innerHTML = error.message;
-            document.getElementById("error").style.color = "red";
+        document.getElementById("error").innerHTML = error.message;
+        document.getElementById("error").style.color = "red";
     }
 }
