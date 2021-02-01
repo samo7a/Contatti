@@ -11,16 +11,20 @@
     position: absolute;
     top: 0;
     left: 0;
+    background-color: aliceblue;
   }
 
-  .contact{
+  #contact{
     position:absolute;
     width:auto;
     height:650px;
     left:50%;
     top:50%;
-    margin-left:-390px;
+    margin-left:-500px;
     margin-top:-500px;
   }
-  
+
+  html, body{
+    height: 100%
+  }
 
