@@ -29,7 +29,7 @@ function login()
 	var jsonPayload = '{"userName" : "' + loginName + '", "password" : "' + loginPassword + '"}';
     
     var request = new XMLHttpRequest();
-	    request.open("POST", url, true);
+	    request.open("POST", loginUrl, true);
 	    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	    try {
             request.onreadystatechange = function() 
