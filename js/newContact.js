@@ -34,8 +34,8 @@ function newContact()
             if (this.readyState == 4 && this.status == 200)
             {
                 var jsonObject = JSON.parse( xhr.responseText );
-                var endpointmsg = jsonObject['msg'];
-                var errormsg = endpoingsmsg.split('Contacts.').pop();
+                var errormsg = JSON.stringify(jsonObject);
+                console.log(errormsg);
                 if (errormsg === "Successfully added")
                 {
                     document.getElementById("error").innerHTML = "Added Contact!";
