@@ -2,7 +2,7 @@ function newContact()
 {
     let url = 'http://thecontatti.com/API/addContact.php';
 
-    // need way to know user ID (cookie)
+    readCookie();
     var newFirst = document.getElementById("newFirst").value;
     var newLast = document.getElementById("newLast").value;
     var newPhone = document.getElementById("newPhone").value;
@@ -13,6 +13,7 @@ function newContact()
     var newZip = document.getElementById("newZip").value;
 
     let jsonPayload = JSON.stringify({
+        u_id: u_id,
         c_firstName: newFirst,
         c_lastName: newLast,
         c_phoneNumber: newPhone,
