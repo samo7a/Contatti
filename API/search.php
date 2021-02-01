@@ -35,6 +35,8 @@
 					$searchResults .= ",{";
 				}
 				$searchCount++;
+                $searchResults .= '"c_id":';
+				$searchResults .= '"' . $row["c_id"] . '",';
                 $searchResults .= '"c_firstName":';
 				$searchResults .= '"' . $row["c_firstName"] . '",';
                 $searchResults .= '"c_lastName":';
