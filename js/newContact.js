@@ -1,3 +1,4 @@
+
 function newContact()
 {
     let url = 'http://thecontatti.com/API/addContact.php';

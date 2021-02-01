@@ -1,4 +1,4 @@
-var url = 'http://thecontatti.com/API/search.php';
+var searchUrl = 'http://thecontatti.com/API/search.php';
 
 function search()
 {   
