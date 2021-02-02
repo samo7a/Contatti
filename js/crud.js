@@ -127,4 +127,5 @@ function newContact() {
     window.location = window.location;
     document.getElementById("error").innerHTML = "Added Contact!";
     document.getElementById("error").style.color = "green";
+	window.location = window.location;
 }

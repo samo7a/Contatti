@@ -38,6 +38,7 @@ function deleteContact(c_id)
         document.getElementById("error").style.color = "red";
     }
 	
+	window.location = window.location;
 	document.getElementById("error").innerHTML = "Contact Deleted!";
     document.getElementById("error").style.color = "green";
 	window.location = window.location;
