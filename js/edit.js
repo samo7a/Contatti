@@ -31,14 +31,7 @@ function editContact() {
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var jsonObject = JSON.parse(request.responseText);
-                c_id = jsonObject.c_id;
-                var endpointmsg = jsonObject.error;
-            if (c_id < 1) {
-                document.getElementById("loginResult").innerHTML = endpointmsg;
-                document.getElementById("loginResult").style.color = "red";
-                return;
-            }*/
-
+                document.getElementById("editContact").innerHTML = "Changes Saved"
         }
     };
     request.responseType = "text";
