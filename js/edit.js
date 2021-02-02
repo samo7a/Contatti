@@ -8,20 +8,19 @@ function editContact() {
     
     readCookie();
 
-    var cID = document.getElementById("cID").value;
-    var uID = document.getElementById("uID").value;
-    var firstName = document.getElementById("firstName").value;
-    var lastName = document.getElementById("lastName").value;
-    var phoneNumber = document.getElementById("phoneNumber").value;
-    var email = document.getElementById("email").value;
-    var address = document.getElementById("address").value;
-    var city = document.getElementById("city").value;
-    var state = document.getElementById("state").value;
-    var zip = document.getElementById("zip").value;
+    var cID = document.getElementById("c_id").value;
+    var uID = document.getElementById("u_id").value;
+    var editFirst = document.getElementById("c_firstName").value;
+    var editLast = document.getElementById("c_lastName").value;
+    var editPhone = document.getElementById("c_phoneNumber").value;
+    var editEmail = document.getElementById("c_email").value;
+    var editAddress = document.getElementById("address").value;
+    var editCity = document.getElementById("city").value;
+    var editState = document.getElementById("state").value;
+    var editZip = document.getElementById("zip").value;
 
-    var json = '{"cID" : "' + cID + '", "uID" : "' + uID + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "password" : "' + hashedPassword + '", 
-    "userName" : "' + userName + '", "phoneNumber" : "' + phoneNumber + '",
-        "email" : "' + email + '", "address" : "' + address + '", "city" : "' + city + '", "state" : "' + state + '", "zip" : "' + zip +'"}';
+    var json = '{"c_id" : "' + cID + '", "u_id" : "' + uID + '", "c_firstName" : "' + editFirst + '", "c_lastName" : "' + editLast + '", "c_phoneNumber" : "' + editPhone + '",
+        "c_email" : "' + editEmail + '", "address" : "' + editAddress + '", "city" : "' + editCity + '", "state" : "' + editState + '", "zip" : "' + editZip +'"}';
 
     var request = new XMLHttpRequest();
     request.open("POST", url, true);
@@ -31,7 +30,7 @@ function editContact() {
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var jsonObject = JSON.parse(request.responseText);
-                document.getElementById("editContact").innerHTML = "Changes Saved"
+                document.getElementById("editResult").innerHTML = "Changes Saved"
         }
     };
     request.responseType = "text";
