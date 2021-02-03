@@ -1,6 +1,14 @@
 let searchUrl = 'http://thecontatti.com/API/search.php';
-var EditButton = `<th class="align-left"><button class=" btn btn-light badge-pill" data-toggle="modal" data-target="#editContact"
-              style="height: 40px;">Edit</button></th>`;
+
+var EditButton = `<th class="align-left">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editContact">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </button></th>`;
+
+var DeleteButton = `<th class="align-left">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteContact">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button></th>`;
 
 window.onload = function () {
     'use strict';
@@ -19,7 +27,8 @@ window.onload = function () {
                 var jsonArray = JSON.parse(request.responseText);
                 //console.log(jsonArray);
                 for (var i = 0; i < jsonArray.length; i++) {
-                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}</td><td>${EditButton}</td><td><button onclick="deleteContact(${jsonArray[i].c_id})";>Delete</button></td></tr>`;
+                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}
+                    </td><td>${EditButton}</td><td>${DeleteButton}</td></tr>`;
                     table.innerHTML += row;
                 }
                 if (jsonArray.msg === "No Contacts Found")
@@ -54,7 +63,8 @@ function search() {
                 var jsonArray = JSON.parse(request.responseText);
                 //console.log(jsonArray);
                 for (var i = 0; i < jsonArray.length; i++) {
-                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}</td><td>${EditButton}</td><td><button "onclick="deleteContact();">Delete</button></td></tr>`;
+                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}</td>
+                    <td>${EditButton}</td><td><${DeleteButton}</td></tr>`;
                     table.innerHTML += row;
                 }
                 if (jsonArray.msg === "No Contacts Found")
