@@ -20,22 +20,22 @@ function login()
 	 u_id = 0;
 	 var u_firstName = "";
 	 var u_lastName = "";
-	
+
 	loginName = document.getElementById("loginName").value;
     loginPassword = md5(document.getElementById("loginPassword").value);
-	
+
 	document.getElementById("loginResult").innerHTML = "";
-	
+
 	var jsonPayload = '{"userName" : "' + loginName + '", "password" : "' + loginPassword + '"}';
-    
+
     var request = new XMLHttpRequest();
 	    request.open("POST", loginUrl, true);
 	    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	    try {
-            request.onreadystatechange = function() 
+            request.onreadystatechange = function()
 		{
-			if (this.readyState == 4 && this.status == 200) 
-			{ 
+			if (this.readyState == 4 && this.status == 200)
+			{
 				var jsonObject = JSON.parse(request.responseText);
                 u_id = jsonObject.u_id;
                 var endpointmsg = jsonObject.error;
@@ -45,18 +45,18 @@ function login()
                       document.getElementById("loginResult").style.color = "red";
 			         return;
 		          }
-                
+
                 u_firstName = jsonObject.u_firstName;
                 u_lastName = jsonObject.u_lastName;
                 saveCookie();
                 window.location.href = "contacts.html";
-                
+
 			}
 		};
             request.responseType="text";
             request.send(jsonPayload);
         }
-    
+
 	   catch(err)
 	   {
 		document.getElementById("loginResult").innerHTML = err.message;
@@ -75,7 +75,7 @@ function signup()
     phoneNumber = document.getElementById("phoneNumber").value;
     email = document.getElementById("email").value;
     document.getElementById("loginName").innerHTML = "";
-    document.getElementById("loginPassword").innerHTML = "";    
+    document.getElementById("loginPassword").innerHTML = "";
     document.getElementById("firstNameError").innerHTML = "";
     document.getElementById("lastNameError").innerHTML = "";
     document.getElementById("passwordError").innerHTML = "";
@@ -84,27 +84,27 @@ function signup()
     document.getElementById("phoneNumberError").innerHTML = "";
     document.getElementById("emailError").innerHTML = "";
     document.getElementById("error").innerHTML = "";
-    
+
     if (validateInput(firstName, lastName, password, confirmPassword, userName, phoneNumber, email))
     {
         var hashedPassword = md5(password);
         var json = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "password" : "' + hashedPassword + '", "userName" : "' + userName + '", "phoneNumber" : "' + phoneNumber + '", "email" : "' + email + '"}';
         //console.log(json);
 
-        
+
 	    var request = new XMLHttpRequest();
 	    request.open("POST", signUpUrl, true);
 	    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	    try {
-            request.onreadystatechange = function() 
+            request.onreadystatechange = function()
 		{
-			if (this.readyState == 4 && this.status == 200) 
+			if (this.readyState == 4 && this.status == 200)
 			{    //console.log(request.responseText);
 				var jsonObject = JSON.parse(request.responseText);
                 //console.log(jsonObject.msg);
-                var endpointmsg = jsonObject['msg'];  
+                var endpointmsg = jsonObject['msg'];
                 var errormsg = endpointmsg.split('Users.').pop();
-                
+
                 if(errormsg === "u_phoneNumber'")
                 {
                     document.getElementById("error").innerHTML = "This phone number is registered. Sign in instead!";
@@ -120,14 +120,14 @@ function signup()
                     document.getElementById("error").innerHTML += "This user name is taken. Try again!";
                     document.getElementById("error").style.color = "red";
                 }
-                
+
             if (errormsg === "done")
                 {
                     document.getElementById("error").innerHTML = "Signed UP!";
                     document.getElementById("error").style.color = "green";
                     document.getElementById("loginName").value = userName;
                     document.getElementById("loginPassword").value = password;
-    
+
                     document.getElementById("firstName").value = "";
                     document.getElementById("lastName").value = "";
                     document.getElementById("password").value = "";
@@ -136,17 +136,17 @@ function signup()
                     document.getElementById("email").value = "";
                     document.getElementById("phoneNumber").value = "";
 
-                    
-                    
+
+
                 }
-		          
+
 
 			}
 		};
             request.responseType="text";
             request.send(json);
-            
-            
+
+
         }
         catch(error)
         {
@@ -188,19 +188,19 @@ function checkFirstName(name)
     {
         document.getElementById("firstNameError").innerHTML = "First name is required!";
         document.getElementById("firstNameError").style.color = "red";
-        return false;       
+        return false;
     }
     if (!nameREGEX.test(name))
     {
         document.getElementById("firstNameError").innerHTML = "Please enter a valid name!";
         document.getElementById("firstNameError").style.color = "red";
-        return false; 
+        return false;
     }
     if (name.length > 50)
     {
         document.getElementById("firstNameError").innerHTML = "First Name should not exceed 50 characters!";
         document.getElementById("firstNameError").style.color = "red";
-        return false;       
+        return false;
     }
     return true;
 }
@@ -212,12 +212,12 @@ function checkLastName(name)
     if (name.length < 1) {
         document.getElementById("lastNameError").innerHTML = "Last name is required!";
         document.getElementById("lastNameError").style.color = "red";
-        return false;       
+        return false;
     }
     if (!nameREGEX.test(name)) {
         document.getElementById("lastNameError").innerHTML = "please enter a valid name!";
         document.getElementById("lastNameError").style.color = "red";
-        return false; 
+        return false;
     }
     if (name.length > 50) {
         document.getElementById("lastNameError").innerHTML = "Last Name should not exceed 50 characters!";
@@ -238,7 +238,7 @@ function checkPassword(password)
     }
     if (!passwordREGEX.test(password))
     {
-        document.getElementById("passwordError").innerHTML = "Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters.<br>Password should not exceed 50 characters!"; 
+        document.getElementById("passwordError").innerHTML = "Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters.<br>Password should not exceed 50 characters!";
         document.getElementById("passwordError").style.color = "red";
         return false;
     }
@@ -265,7 +265,7 @@ function checkUserName(userName)
     {
         document.getElementById("userNameError").innerHTML = "Please enter a valid User Name!<br>User Name should start with a letter, cannot contain any special characters and must be between 5 to 50 Characters long!";
         document.getElementById("userNameError").style.color = "red";
-        return false;        
+        return false;
     }
 
     return true;
@@ -274,7 +274,7 @@ function checkUserName(userName)
 function checkPhoneNumber(phoneNumber)
 {
     "use strict";
-    if (phoneNumber.length === 0) 
+    if (phoneNumber.length === 0)
     {
         return true;
     }
@@ -292,11 +292,11 @@ function checkPhoneNumber(phoneNumber)
             document.getElementById("phoneNumberError").innerHTML = "Please enter a valid phone number!";
             document.getElementById("phoneNumberError").style.color = "red";
             return false;
-        } 
+        }
     }
     return true;
 }
-    
+
 function checkEmail(email)
 {
     "use strict";
@@ -344,29 +344,29 @@ function saveCookie()
 {
 	var minutes = 20;
 	var date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));	
+	date.setTime(date.getTime()+(minutes*60*1000));
 	document.cookie = "u_id=" + u_id + ";expires=" + date.toGMTString();
 }
 
 function readCookie()
-{   
+{
 	u_id = -1;
 	var data = document.cookie;
 	var splits = data.split(";");
-	for(var i = 0; i < splits.length; i++) 
+	for(var i = 0; i < splits.length; i++)
 	{
 		var thisOne = splits[i].trim();
 		var tokens = thisOne.split("=");
-		
+
 		if( tokens[0] == "u_id" )
 		{
 			u_id = parseInt( tokens[1].trim() );
 		}
 	}
-	
+
 	if( u_id < 0 )
 	{
 		window.location.href = "index.html";
 	}
-    
+
 }

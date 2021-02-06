@@ -9,15 +9,15 @@
   <script type="text/javascript" src="js/deleteContact.js"></script>
   <script type="text/javascript" src="js/edit.js"></script>
 
-  
+
   <link href="css/contacts.css" rel="stylesheet">
 
 
-  
-    <link rel="stylesheet" 
-    href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
-    crossorigin="anonymous"> 
+
+    <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+    crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -54,12 +54,16 @@
             <form class="form-group">
               <label for="firstName">Enter First Name</label>
               <input type="text" class="form-control" id="newFirst" placeholder="First Name">
+              <p id="firstNameError"></p>
               <label for="LastName">Enter Last Name</label>
               <input type="text" class="form-control" id="newLast" placeholder="Last Name">
+              <p id="lastNameError"></p>
               <label for="phoneNumber">Enter Phone Number</label>
               <input type="text" class="form-control" id="newPhone" placeholder="Phone Number">
+              <p id="phoneNumberError"></p>
               <label for="email">Enter Email</label>
               <input type="text" class="form-control" id="newEmail" placeholder="Email">
+              <p id="emailError"></p>
               <label for="address">Enter Street</label>
               <input type="text" class="form-control" id="newStreet" placeholder="Address">
               <label for="address">Enter City</label>
@@ -68,9 +72,11 @@
               <input type="text" class="form-control" id="newState" placeholder="State">
               <label for="address">Enter Zip</label>
               <input type="text" class="form-control" id="newZip" placeholder="Zip">
+              <p id="zipError"></p>
               <button type="button" class="btn btn-primary btn-block mt-2 mb-3" data-dismiss="modal">Close</button>
-              <button type="button" id="addButton" class="btn btn-primary btn-block mt-2 mb-3" data-dismiss="modal"
+              <button type="button" id="addButton" class="btn btn-primary btn-block mt-2 mb-3"
                 onclick="newContact();">Add Contact</button>
+              <p id="newContactMsg"></p>
             </form>
           </div>
         </div>
@@ -109,7 +115,7 @@
               <button type="button" class="btn btn-primary btn-block mt-2 mb-3" data-dismiss="modal">Close</button>
               <button type="button" id="editButton" class="btn btn-primary btn-block mt-2 mb-3"
                 onclick="editContact();">Save changes</button>
-              <span id="editResult"></span> 
+              <span id="editResult"></span>
             </form>
           </div>
         </div>
@@ -131,7 +137,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary">Yes!</button>
+            <button type="button" class="btn btn-primary" id="confirm">Yes!</button>
           </div>
         </div>
       </div>
@@ -170,7 +176,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
-      
+
   </section>
 </body>
 
