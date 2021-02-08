@@ -1,6 +1,7 @@
 function deleteContact(c_id)
 {
-  
+      if (confirm("Are you sure you want to delete this contact?"))
+      {
           let url = 'http://thecontatti.com/API/delete.php';
 
           readCookie();
@@ -41,5 +42,5 @@ function deleteContact(c_id)
       	document.getElementById("error").innerHTML = "Contact Deleted!";
           document.getElementById("error").style.color = "green";
       	window.location = window.location;
-
+    }
 }
