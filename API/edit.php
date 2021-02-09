@@ -17,7 +17,7 @@ $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
        error( $conn->connect_error);
    }
    else{     
-       //Getting all info, zip and phoneNum are strings not numbers
+       //  all info, zip and phoneNum are strings not numbers
        $cID = $input["c_id"];
        $uID = $input["u_id"];
        $firstName = $input["c_firstName"];

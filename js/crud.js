@@ -1,7 +1,7 @@
 let searchUrl = 'http://thecontatti.com/API/search.php';
 
 var EditButton = `<th class="align-left">
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editContact">
+                    <button type="button" id = "edit" class="btn btn-default" data-toggle="modal" data-target="#editContact">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </button></th>`;
 
@@ -22,11 +22,63 @@ window.onload = function () {
                 var jsonArray = JSON.parse(request.responseText);
                 //console.log(jsonArray);
                 for (var i = 0; i < jsonArray.length; i++) {
-                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}
+                    /*var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}
                     </td><td>${EditButton}</td><td><th class="align-left">
                       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteContact" onclick="deleteContact(${jsonArray[i].c_id});">
                       <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                      </button></th></td></tr>`;
+                      </button></th></td></tr>`;*/
+
+                      var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td>
+                      <td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td>
+                      <td>${jsonArray[i].zip}</td>
+                      <td><?php echo $row['c_firsttName']?></td>
+                      <td> <th class="align-left">
+                      <button type="button" id = "edit" class="btn btn-default" data-toggle="modal" data-target="#editContact">
+                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                      </button></th></td>
+                      <td><div class="modal fade" id="editContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit New Contact</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form class="form-group">
+                              <label for="firstName">Enter First Name</label>
+                              <input type="text" class="form-control" id="editFirst" placeholder=${jsonArray[i].c_firstName}>
+                              <label for="LastName">Enter Last Name</label>
+                              <input type="text" class="form-control" id="editLast" placeholder=>
+                              <label for="phoneNumber">Enter Phone Number</label>
+                              <input type="text" class="form-control" id="editPhone" placeholder=>
+                              <label for="email">Enter Email</label>
+                              <input type="text" class="form-control" id="editEmail" placeholder=>
+                              <label for="address">Enter Street</label>
+                              <input type="text" class="form-control" id="editAddress" placeholder=>
+                              <label for="address">Enter City</label>
+                              <input type="text" class="form-control" id="editCity" placeholder=>
+                              <label for="address">Enter State</label>
+                              <input type="text" class="form-control" id="editState" placeholder=>
+                              <label for="address">Enter Zip</label>
+                              <input type="text" class="form-control" id="editZip" placeholder=>
+                              <button type="button" class="btn btn-primary btn-block mt-2 mb-3" data-dismiss="modal">Close</button>
+                              <button type="button" id="editButton" class="btn btn-primary btn-block mt-2 mb-3"
+                                onclick="SaveContact();">Save changes</button>
+                              <span id="editResult"></span>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div></td>
+                      
+                      <td><th class="align-left">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteContact" onclick="deleteContact(${jsonArray[i].c_id});">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button></th>
+                        </td></tr>`;
                     table.innerHTML += row;
                 }
                 if (jsonArray.msg === "No Contacts Found")
@@ -61,11 +113,63 @@ function search() {
                 var jsonArray = JSON.parse(request.responseText);
                 //console.log(jsonArray);
                 for (var i = 0; i < jsonArray.length; i++) {
-                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}
+                    /*var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}
                     </td><td>${EditButton}</td><td><th class="align-left">
                       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteContact" onclick="deleteContact(${jsonArray[i].c_id});">
                       <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                      </button></th></td></tr>`;
+                      </button></th></td></tr>`;*/
+
+                      var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td>
+                      <td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td>
+                      <td>${jsonArray[i].zip}</td>
+                      <td><th class="align-left">
+                      <button type="button" id = "edit" class="btn btn-default" data-toggle="modal" data-target="#editContact">
+                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                      </button></th></td>
+                      <td><div class="modal fade" id="editContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit New Contact</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form class="form-group">
+                              <label for="firstName">Enter First Name</label>
+                              <input type="text" class="form-control" id="editFirst" placeholder=>
+                              <label for="LastName">Enter Last Name</label>
+                              <input type="text" class="form-control" id="editLast" placeholder=>
+                              <label for="phoneNumber">Enter Phone Number</label>
+                              <input type="text" class="form-control" id="editPhone" placeholder=>
+                              <label for="email">Enter Email</label>
+                              <input type="text" class="form-control" id="editEmail" placeholder=>
+                              <label for="address">Enter Street</label>
+                              <input type="text" class="form-control" id="editAddress" placeholder=>
+                              <label for="address">Enter City</label>
+                              <input type="text" class="form-control" id="editCity" placeholder=>
+                              <label for="address">Enter State</label>
+                              <input type="text" class="form-control" id="editState" placeholder=>
+                              <label for="address">Enter Zip</label>
+                              <input type="text" class="form-control" id="editZip" placeholder=>
+                              <button type="button" class="btn btn-primary btn-block mt-2 mb-3" data-dismiss="modal">Close</button>
+                              <button type="button" id="editButton" class="btn btn-primary btn-block mt-2 mb-3"
+                                onclick="SaveContact();">Save changes</button>
+                              <span id="editResult"></span>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div></td>
+                      
+                      <td><th class="align-left">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteContact" onclick="deleteContact(${jsonArray[i].c_id});">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button></th>
+                        </td></tr>`;
+                    
                     table.innerHTML += row;
                 }
                 if (jsonArray.msg === "No Contacts Found")
