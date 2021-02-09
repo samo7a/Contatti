@@ -1,13 +1,17 @@
 var url = 'http://thecontatti.com/API/edit.php';
 
-var u_id = 0;
-var c_id = 0;
 
-
-function editContact() {
+function editContact(c_id) {
     
     readCookie();
 
+    var request = new XMLHttpRequest();
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    //console.log(`This is ${editFirst} times easier!`);
+
+    console.log(`This is 1 times easier!`);
+   /* 
     var cID = document.getElementById("c_id").value;
     var uID = document.getElementById("u_id").value;
     var editFirst = document.getElementById("c_firstName").value;
@@ -18,20 +22,30 @@ function editContact() {
     var editCity = document.getElementById("city").value;
     var editState = document.getElementById("state").value;
     var editZip = document.getElementById("zip").value;
+*/
+   
+    //console.log(`This is ${editFirst} times easier!`);
+ 
+    let jsonPayload = JSON.stringify({
+        c_id: c_id,
+        u_id: u_id,
+    });
 
-    var json = '{"c_id" : "' + cID + '", "u_id" : "' + uID + '", "c_firstName" : "' + editFirst + '", "c_lastName" : "' + editLast + '", "c_phoneNumber" : "' + editPhone + '",
-        "c_email" : "' + editEmail + '", "address" : "' + editAddress + '", "city" : "' + editCity + '", "state" : "' + editState + '", "zip" : "' + editZip +'"}';
+    console.log(`This is 2 times easier!`);
+    console.log(`Printing: ${jsonPayload} !`);
+    //var json = '{"c_id" : "' + cID + '", "u_id" : "' + uID + '", "c_firstName" : "' + editFirst + '", "c_lastName" : "' + editLast +'", "c_phoneNumber" : "' + editPhone + 
+    //    '", "c_email" :"' + editEmail + '", "address" : "' + editAddress + '", "city" : "' + editCity + '", "state" : "' + editState + '", "zip" : "' + editZip + '"}';    
 
-    var request = new XMLHttpRequest();
-    request.open("POST", url, true);
-    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    try {
+    try 
+    {
         request.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState == 4 && this.status == 200) 
+            {                
                 var jsonObject = JSON.parse(request.responseText);
-                document.getElementById("editResult").innerHTML = "Changes Saved"
-        }
+                document.getElementById("edit").value = editFirst;
+                console.log(`This is ${editFirst} times easier!`);
+            }
+            console.log(`This is x times easier!`);
     };
     request.responseType = "text";
     request.send(jsonPayload);
