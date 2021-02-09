@@ -61,8 +61,11 @@ function search() {
                 var jsonArray = JSON.parse(request.responseText);
                 //console.log(jsonArray);
                 for (var i = 0; i < jsonArray.length; i++) {
-                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}</td>
-                    <td>${EditButton}</td><td><${DeleteButton}</td></tr>`;
+                    var row = `<tr><td>${jsonArray[i].c_firstName}</td><td>${jsonArray[i].c_lastName}</td><td>${jsonArray[i].c_phoneNumber}</td><td>${jsonArray[i].c_email}</td><td>${jsonArray[i].address}</td><td>${jsonArray[i].city}</td><td>${jsonArray[i].state}</td><td>${jsonArray[i].zip}
+                    </td><td>${EditButton}</td><td><th class="align-left">
+                      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteContact" onclick="deleteContact(${jsonArray[i].c_id});">
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                      </button></th></td></tr>`;
                     table.innerHTML += row;
                 }
                 if (jsonArray.msg === "No Contacts Found")
