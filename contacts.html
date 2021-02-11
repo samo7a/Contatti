@@ -1,9 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title> Contacts </title>
-
   <script type="text/javascript" src="js/auth.js"></script>
   <script type="text/javascript" src="js/crud.js"></script>
   <link href="css/contacts.css" rel="stylesheet">
@@ -59,20 +58,19 @@
               <input type="text" class="form-control" id="newEmail" placeholder="Email">
               <p id="emailError"></p>
               <label for="address">Enter Street</label>
-                <p id="addressError"></p>
               <input type="text" class="form-control" id="newStreet" placeholder="Address">
+                <p id="addressError"></p>
               <label for="address">Enter City</label>
-                <p id="cityError"></p>
               <input type="text" class="form-control" id="newCity" placeholder="City">
+                <p id="cityError"></p>
               <label for="address">Enter State</label>
-                <p id="stateError"></p>
               <input type="text" class="form-control" id="newState" placeholder="State">
-              <label for="address">Enter Zip</label>
-              <input type="text" class="form-control" id="newZip" placeholder="Zip">
+                <p id="stateError"></p>
+              <label for="address">Enter Zip Code</label>
+              <input type="text" class="form-control" id="newZip" placeholder="Zip Code">
               <p id="zipError"></p>
               <button type="button" class="btn btn-primary btn-block mt-2 mb-3" data-dismiss="modal">Close</button>
-              <button type="button" id="addButton" class="btn btn-primary btn-block mt-2 mb-3"
-                onclick="newContact();">Add Contact</button>
+              <button type="button" id="addButton" class="btn btn-primary btn-block mt-2 mb-3" onclick="newContact();">Add Contact</button>
               <p id="newContactMsg"></p>
             </form>
           </div>
@@ -80,7 +78,7 @@
       </div>
     </div>
 
-    <!-- Edit Contact Modal
+    <!-- Edit Contact Modal -->
     <div class="modal fade" id="editContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -95,30 +93,37 @@
             <form class="form-group">
               <label for="firstName">Enter First Name</label>
               <input type="text" class="form-control" id="editFirst" placeholder="First Name">
+                <p id="editErrorFirst"></p>
               <label for="LastName">Enter Last Name</label>
               <input type="text" class="form-control" id="editLast" placeholder="Last Name">
+                <p id="editErrorLast"></p>
               <label for="phoneNumber">Enter Phone Number</label>
               <input type="text" class="form-control" id="editPhone" placeholder="Phone Number">
+                <p id="editErrorPhone"></p>
               <label for="email">Enter Email</label>
               <input type="text" class="form-control" id="editEmail" placeholder="Email">
+                <p id="editErrorEmail"></p>
               <label for="address">Enter Street</label>
               <input type="text" class="form-control" id="editAddress" placeholder="Address">
+                <p id="editErrorAddress"></p>
               <label for="address">Enter City</label>
               <input type="text" class="form-control" id="editCity" placeholder="City">
+                <p id="editErrorCity"></p>
               <label for="address">Enter State</label>
               <input type="text" class="form-control" id="editState" placeholder="State">
-              <label for="address">Enter Zip</label>
-              <input type="text" class="form-control" id="editZip" placeholder="Zip">
+                <p id="editErrorState"></p>
+              <label for="address">Enter Zip Code</label>
+              <input type="text" class="form-control" id="editZip" placeholder="Zip Code">
+                <p id="editErrorZip"></p>
               <button type="button" class="btn btn-primary btn-block mt-2 mb-3" data-dismiss="modal">Close</button>
-              <button type="button" id="editButton" class="btn btn-primary btn-block mt-2 mb-3"
-                onclick="SaveContact();">Save changes</button>
+              <button type="button" id="editButton" class="btn btn-primary btn-block mt-2 mb-3" onclick="editContact();">Save changes</button>
               <span id="editResult"></span>
             </form>
           </div>
         </div>
       </div>
     </div>
- -->
+ 
 
     <!-- Contacts -->
     <h3>------</h3>
