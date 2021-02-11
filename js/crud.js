@@ -212,6 +212,15 @@ function deleteContact(c_id)
 
 
 function setIndex(i){
+    document.getElementById("editErrorFirst").innerHTML = "";
+    document.getElementById("editErrorLast").innerHTML =  "";
+    document.getElementById("editErrorEmail").innerHTML =  "";
+    document.getElementById("editErrorPhone").innerHTML = "";
+    document.getElementById("editErrorAddress").innerHTML = "";
+    document.getElementById("editErrorCity").innerHTML = "";
+    document.getElementById("editErrorState").innerHTML = "";
+    document.getElementById("editErrorZip").innerHTML = "";
+    document.getElementById("editResult").innerHTML = "";
     index = i;
     document.getElementById("editFirst").value = jsonArray[index].c_firstName;
     document.getElementById("editLast").value = jsonArray[index].c_lastName;
@@ -223,6 +232,15 @@ function setIndex(i){
     document.getElementById("editZip").value = jsonArray[index].zip;
 }
 function editContact() {
+     document.getElementById("editErrorFirst").innerHTML = "";
+    document.getElementById("editErrorLast").innerHTML =  "";
+    document.getElementById("editErrorEmail").innerHTML =  "";
+    document.getElementById("editErrorPhone").innerHTML = "";
+    document.getElementById("editErrorAddress").innerHTML = "";
+    document.getElementById("editErrorCity").innerHTML = "";
+    document.getElementById("editErrorState").innerHTML = "";
+    document.getElementById("editErrorZip").innerHTML = "";
+    document.getElementById("editResult").innerHTML = "";
     
     readCookie();
     var cId = jsonArray[index].c_id;
@@ -500,7 +518,7 @@ function checkEditZip(editZip)
     var i = 0;
     for (i = 0; i < 5; i += 1)
     {
-        if (newZip.charAt(i) < '0' || newZip.charAt(i) > '9')
+        if (editZip.charAt(i) < '0' || editZip.charAt(i) > '9')
         {
             document.getElementById("editErrorZip").innerHTML = "Please enter a valid zip code!";
             document.getElementById("editErrorZip").style.color = "red";
