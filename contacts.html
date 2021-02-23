@@ -20,9 +20,9 @@
 
 <body>
   <section class="container-fluid contactsBg">
-    <nav class="navbar navbar-expand-lg" id="navigation" style="background-color: #4067d3;">
+    <nav class="navbar navbar-expand-lg fixed-top" id="navigation" style="background-color: #4067d3;">
       <a class="navbar-brand">
-        <img src="./images/icon5.png" alt="Logo" style="width: 100px;">
+        <img src="./images/icon5.png" alt="Logo" style="width: 75px;">
       </a>
         <ul class="nav navbar-nav ml-auto">
           <form class="form-inline my-2 my-lg-0">
@@ -125,9 +125,8 @@
  
 
     <!-- Contacts -->
-    <h3>------</h3>
-    <div class="container-fluid" style="background-color: rgb(97, 131, 182)">
-      <table class="table mt-5"  style="width 50%">
+    <div class="container-fluid">
+      <table class="table mt-5">
         <thead>
           <tr>
             <th>First Name</th>
@@ -138,8 +137,9 @@
             <th>City</th>
             <th>State</th>
             <th>Zip Code</th>
-            <th class="align-left"><button class=" btn btn-light badge-pill" data-toggle="modal" data-target="#addContact"
-              style="height: 40px;">Add Contact </button></th>
+            <th><button type="button" class=" btn btn-light badge-pill" data-toggle="modal" data-target="#addContact"
+              style="height: 40px;">Add Contact</button></th>
+            <th> </th>
           </tr>
         </thead>
         <tbody id="searchResults">
